@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+    <style>
+        *{
+          margin: 0px;
+          padding:0px;
+        }
+        body{
+            background-color: rgb(45, 45, 210);
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main{
+            flex-basis: 400px;
+            box-shadow: 0px 0px 10px #ccc;
+            background-color: antiquewhite;
+        }
+        .main h3{
+            padding:20px;
+            font-size: 30px;
+        }
+        .main form{
+            padding: 20px;
+        }
+        .form-outer label{
+            display: block;
+        }
+        .form-outer input{
+            width: 100%;
+            height:35px;
+        }
+        .form-outer button{
+            padding: 10px 0px;
+            width: 100%;
+            background-color: #26263b;
+            color: white;
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <table border="0" width="100%" bgcolor="red" height="8%">
+        <tr>
+            <th width="20%"><font color="red" size="4"><a href="AnchorTag.html">Home</a></font></th>
+            <th width="20%"><font color="red" size="4"><a href="aboutus.html">About Us</a></font></th>
+            <th width="20%"><font color="red" size="4"><a href="#">Gallery</a></font></th>
+            <th width="20%"><font color="red" size="4"><a href="#">Feedback</a></font></th>
+            <th width="20%"><font color="red" size="4"><a href="#">FAQ</a></font></th>
+        </tr>
+    </table> 
+    <div class="main">
+        <h3>Get in touch!</h3>
+        <form methord="post" id="form">
+            <div class="form-outer">
+                <label>Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="form-outer">
+                <label>Email</label>
+                <input type="text" name="email">
+            </div>
+            <div class="form-outer">
+                <label>Phone</label>
+                <input type="text" name="phone">
+            </div><br>
+            <div class="form-outer">
+                <button name="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    let url='https://script.google.com/macros/s/AKfycbwUvKwZ9l4qz9fsYb_YFNlZIGeOihVSylOd7WOsY04bXmwNA1LBgiZUTttMN5--H13wFw/exec'
+    let form=document.querySelector('#form');
+    form.addEventListener("submit",(e)=>{
+        e.target.btn.innerHTML="Submitting...";
+        let d=new FormData(form);
+        fetch(url,{
+            method:"POST",
+            body:d
+        }).then((res)=>res.text())
+        .then((finalRes)=>{
+            e.target.btn.innerHTML="Submit";
+            document.getElementById("res").innerHTML=finalrel;
+            setTimeout(()=>{
+                document.getElementById("res").innerHTML='';
+            },5500)
+            
+        })
+        e.preventDefault();
+    })
+</script>
+</html>
